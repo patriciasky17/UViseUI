@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UVise - Dashboard</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon1.ico">
+
+    <!-- Plus Jakarta Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        "plusJakartaSans": ['Plus Jakarta Sans', 'sans-serif']
+                    },
+                    colors: {
+                        primary: {
+                            100: '#f4f8fb', // On Primary  // Surface Container
+                            200: '#d9e6ef', // Surface High Container
+                            300: '#b4cee0', // Primary Container // Surface Highest Container
+                            400: '#8bb4cf',
+                            500: '#659cbf',
+                            600: '#4a8ab4',
+                            700: '#4682a9',
+                            800: '#437ca1',
+                            900: '#3a6b8b',
+                            DEFAULT: '#2d546e', // 1000 // Primary
+                            dark: '#203c4d',     // 1100 // On Primary Container
+                            darkest: '#142530',  // 1200
+
+                            primary: '#2d546e', // Primary
+                            onPrimary: '#f4f8fb', 
+                            primaryContainer: '#b4cee0',        
+                            onPrimaryContainer: '#203c4d',       
+                        },
+                        // Global Secondary
+                        secondary: {
+                            100: '#fdfdfc', // On Secondary // Background // Surface Lowest Container
+                            200: '#faf9f5', // Surface Low Container
+                            300: '#f2f0e7', // Surface Container
+                            400: '#ebe8da', // Secondary Container // Surface High Container
+                            500: '#e2dfd2', // Surface Highest Container
+                            600: '#d8d5c8',
+                            700: '#cbc8bb',
+                            800: '#b6b3a6',
+                            900: '#8e8b7f',
+                            DEFAULT: '#827f73', // 1000
+                            dark: '#68655a',    // 1100 // Secondary
+                            darkest: '#2f2c23', // 1200 // On Secondary Container
+
+                            secondary: '#68655a', 
+                            onSecondary: '#fdfdfc',  
+                            secondaryContainer: '#ebe8da',             
+                            onSecondaryContainer: '#2f2c23',     
+                        },
+
+                        // Global Red
+                        red: {
+                            100: '#fffcfc', // On Error
+                            200: '#fff7f7',
+                            300: '#feebea',
+                            400: '#ffdcd8', // Error Container
+                            500: '#ffcec9',
+                            600: '#fdbeb8',
+                            700: '#f4aaa4',
+                            800: '#eb8f89',
+                            900: '#dc3e42',
+                            DEFAULT: '#ce2b34', // 1000
+                            dark: '#cd2e36',    // 1100 // Error
+                            darkest: '#64181a', // 1200 // On Error Container    
+                        },
+
+                        error: {
+                            error: '#cd2e36',
+                            onError: '#fffcfc', 
+                            errorContainer: '#ffdcd8',          
+                            onErrorContainer: '#64181a',     
+                        },
+
+                        // Global Green
+                        green: {
+                            100: '#fbfefa', // On Success
+                            200: '#f6fbf4',
+                            300: '#eaf7e4',
+                            400: '#dcf1d3', // Success Container
+                            500: '#cce9bf',
+                            600: '#b7dea5',
+                            700: '#9bce83',
+                            800: '#73b94f',
+                            900: '#56a522',
+                            DEFAULT: '#4c9817', // 1000
+                            dark: '#3a7e00',    // 1100 // Success
+                            darkest: '#253c19', // 1200 // On Success Container
+                        },
+
+                        success: {
+                            success: '#3a7e00',
+                            onSuccess: '#fbfefa', 
+                            successContainer: '#dcf1d3',         
+                            onSuccessContainer: '#253c19',       
+                        },
+
+                        // Global Yellow
+                        yellow: {
+                            100: '#fefdfb', // On Warning
+                            200: '#fffae9',
+                            300: '#fff2c0',
+                            400: '#ffe8a4', // Warning Container
+                            500: '#ffdd82',
+                            600: '#ffd075',
+                            700: '#edc068',
+                            800: '#dba83b',
+                            900: '#d5a234',
+                            DEFAULT: '#c99724', // 1000
+                            dark: '#9e6d00',    // 1100 // Warning
+                            darkest: '#47391f', // 1200 // On Warning Container   
+                        },
+
+                        warning: {
+                            warning: '#9e6d00',
+                            onWarning: '#fefdfb',
+                            warningContainer: '#ffe8a4',         
+                            onWarningContainer: '#47391f',       
+                        },
+                        
+                        // Global Neutral
+                        neutral: {
+                            100: '#fcfcfd', // Surface Lowest Container
+                            200: '#f9f9fb', // Surface Low Container
+                            300: '#eff0f3', 
+                            400: '#eff0f3', 
+                            500: '#e0e1e6', // Separator
+                            600: '#d8d9e0',
+                            700: '#cdced7', // Placeholder // Border
+                            800: '#b9bbc6',
+                            900: '#8b8d98', // Disable
+                            DEFAULT: '#80828d', // 1000
+                            dark: '#62636c',    // 1100
+                            darkest: '#1e1f24', // 1200 // Text
+                        },
+
+                        surface: {
+                            background: '#fdfdfc',
+                            primaryLowestContainer: '#fcfcfd',   
+                            primaryLowContainer: '#f9f9fb',     
+                            primaryMediumContainer: '#f4f8fb',  
+                            primaryHighContainer: '#d9e6ef',     
+                            primaryHighestContainer: '#b4cee0',  
+                            secondaryLowestContainer: '#fdfdfc',
+                            secondaryLowContainer: '#faf9f5',    
+                            secondaryMediumContainer: '#f2f0e7', 
+                            secondaryHighContainer: '#ebe8da',   
+                            secondaryHighestContainer: '#e2dfd2',
+                        },
+
+                        label: {
+                            text: '#1e1f24',
+                            placeholder: '#cdced7',
+                            disable: '#8b8d98',
+                        },
+
+                        border: {
+                            border: '#cdced7',
+                            separator: '#e0e1e6',
+                        }
+                    },
+                },
+            },
+        }
+    </script>
+
+    
+</head>
+
+<body class="font-plusJakartaSans">
+    <nav class="flex items-center justify-between py-4 lg:px-12 md:px-6 px-4">
+        <img src="./assets/svg/UVise.svg" alt="UVise Logo" class="md:h-8 h-6">
+        <div class="relative inline-block text-left">
+            <div>
+                <button type="button"
+                    class="w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 focus:ring-1 focus:ring-inset focus:ring-gray-100 hover:bg-gray-50 flex items-center justify-center gap-2"
+                    id="menu-button" aria-expanded="false" aria-haspopup="true" onclick="toggleDropdown()">
+                    <img src="./assets/img/Profile.png" alt="Profile" class="md:h-8 h-6 rounded-full border-2 border-primary-400">
+                    <p class="inline md:text-base text-sm font-medium">John Doe</p>
+                    <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+                        data-slot="icon">
+                        <path fill-rule="evenodd"
+                            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        
+            <div id="dropdown-menu" class="absolute right-0 z-10 mt-2 w-max max-w-72 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden"
+                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                <div class="p-2" role="none">
+                    <a href="#" class="block p-2 text-sm text-gray-700 flex gap-4 rounded-md border-[0.5px] border-border-border" role="menuitem" tabindex="-1" id="menu-item-0">
+                        <img src="./assets/img/Profile.png" alt="Profile" class="md:h-12 h-8 rounded-full border-2 border-primary-400">
+                        <div class="flex flex-col gap-2 w-full min-w-0">
+                            <div class="flex flex-col gap-[2px] w-full min-w-0">
+                                <p class="text-base font-medium">John Doe</p>
+                                <p class="text-sm text-ellipsis truncate">johndoe@gmail.com</p>
+                            </div>
+                            <div class="flex gap-1 bg-surface-secondaryMediumContainer py-1 px-2 rounded-md items-end w-fit">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="pt-[1px]">
+                                    <circle cx="6" cy="6" r="6" class="fill-yellow-900" />
+                                </svg> 
+                                <p class="text-xs font-medium">Tipe Kulit III</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="py-1" role="none">
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1"
+                        id="menu-item-6">
+                        <div class="flex items-center gap-4">
+                            <img src="./assets/svg/Logout.svg" alt="Logout Icon" class="w-6">
+                            <p>Keluar Akun</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+
+    <main class="grid grid-cols-12 py-4 lg:px-12 md:px-6 px-4 gap-3">
+        <div class="lg:col-span-8 col-span-12 grid grid-cols-12 gap-3">
+            <div class="sm:col-span-8 col-span-12 grid grid-cols-1 gap-3">
+                <div class="col-span-1 bg-primary-100 rounded-md relative overflow-hidden">
+                    <div class="flex sm:flex-row flex-col sm:justify-between items-center sm:gap-2 gap-6 py-6 md:px-4 px-2 z-1 relative">
+                        <div class="title-desc flex flex-col gap-2">
+                            <h3 class="text-base font-light sm:text-left text-center">Aplikasikan ulang sunscreen dalam</h3>
+                            <p class="text-3xl font-semibold sm:text-left text-center">48 Menit</p>
+                        </div>
+                        <button class="bg-primary-primary hover:bg-primary-dark p-3 rounded-md text-primary-onPrimary w-fit">Gunakan Ulang Sunscreen</button>
+                    </div>
+
+                    <img src="./assets/img/Sunscreens.png" alt="Sunscreen" class="absolute -bottom-4 absolute m-auto left-0 right-0 w-3/5 z-0">
+                    <img src="./assets/svg/Cloud.svg" alt="Cloud" class="w-full -z-1">
+                </div>
+    
+                <div class="col-span-1 bg-yellow-300 py-6 px-4 rounded-md">
+                    <div class="flex justify-between items-center gap-6">
+                        <div class="flex flex-col gap-6">
+                            <div class="flex items-center justify-between">
+                                <div class="title-desc flex flex-col gap-2">
+                                    <h3 class="text-base font-light">UV Index</h3>
+                                    <p class="text-3xl font-semibold">5.2</p>
+                                </div>
+
+                                <div class="md:hidden block">
+                                    <svg width="158" height="158" viewBox="0 0 158 158" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-20 h-fit">
+                                        <path d="M78.8334 45.9167C97.0034 45.9167 111.75 60.6634 111.75 78.8334C111.75 97.0034 97.0034 111.75 78.8334 111.75C60.6634 111.75 45.9167 97.0034 45.9167 78.8334C45.9167 60.6634 60.6634 45.9167 78.8334 45.9167Z" fill="#DBA83B" stroke="#DBA83B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M78.8333 138.083V144.667V138.083ZM138.083 78.8333H144.667H138.083ZM78.8333 19.5833V13V19.5833ZM19.5833 78.8333H13H19.5833Z" fill="#DBA83B"/>
+                                        <path d="M78.8333 138.083V144.667M138.083 78.8333H144.667M78.8333 19.5833V13M19.5833 78.8333H13" stroke="#DBA83B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M121.625 121.625L124.917 124.917L121.625 121.625ZM121.625 36.0417L124.917 32.75L121.625 36.0417ZM36.0417 36.0417L32.75 32.75L36.0417 36.0417ZM36.0417 121.625L32.75 124.917L36.0417 121.625Z" fill="#DBA83B"/>
+                                        <path d="M121.625 121.625L124.917 124.917M121.625 36.0417L124.917 32.75M36.0417 36.0417L32.75 32.75M36.0417 121.625L32.75 124.917" stroke="#DBA83B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="subtitle text-sm font-light leading-6"><span class="font-medium">Moderate risk:</span> Some skin types may burn. Wear sunscreen and sunglasses if outdoors for long.</div>
+                        </div>
+                        <div class="md:block hidden">
+                            <svg width="158" height="158" viewBox="0 0 158 158" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-36">
+                                <path d="M78.8334 45.9167C97.0034 45.9167 111.75 60.6634 111.75 78.8334C111.75 97.0034 97.0034 111.75 78.8334 111.75C60.6634 111.75 45.9167 97.0034 45.9167 78.8334C45.9167 60.6634 60.6634 45.9167 78.8334 45.9167Z" fill="#DBA83B" stroke="#DBA83B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M78.8333 138.083V144.667V138.083ZM138.083 78.8333H144.667H138.083ZM78.8333 19.5833V13V19.5833ZM19.5833 78.8333H13H19.5833Z" fill="#DBA83B"/>
+                                <path d="M78.8333 138.083V144.667M138.083 78.8333H144.667M78.8333 19.5833V13M19.5833 78.8333H13" stroke="#DBA83B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M121.625 121.625L124.917 124.917L121.625 121.625ZM121.625 36.0417L124.917 32.75L121.625 36.0417ZM36.0417 36.0417L32.75 32.75L36.0417 36.0417ZM36.0417 121.625L32.75 124.917L36.0417 121.625Z" fill="#DBA83B"/>
+                                <path d="M121.625 121.625L124.917 124.917M121.625 36.0417L124.917 32.75M36.0417 36.0417L32.75 32.75M36.0417 121.625L32.75 124.917" stroke="#DBA83B" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="sm:col-span-4 col-span-12 bg-yellow-200 px-4 pb-0 pt-6 rounded-md bg-cover h-full" style="background-image: url(./assets/img/Pattern/Pattern.png);">
+                <div class="flex sm:flex-col flex-row sm:gap-3 gap-2 justify-between h-full sm:items-center sm:items-end items-start">
+                    <div class="title-desc flex flex-col gap-2 items-start h-max pb-6">
+                        <h3 class="text-xl font-medium sm:text-center text-left w-full">Tipe Kulit <span class="tipe-kulit">III</span></h3>
+                        <p class="text-sm font-light sm:text-center text-left leading-6 md:px-4">Kamu mampu bertahan di luar ruangan selama kira-kira 2 jam pada range UV 5 - 7</p>
+                    </div>
+                    <img src="./assets/svg/SkinType/SkinType3.svg" alt="Skin Type 3 Person" class="sm:h-full h-fit sm:max-h-80">
+                </div>
+            </div>
+    
+            <div class="sm:col-span-6 col-span-12 bg-yellow-200 px-4 py-6 rounded-md">
+                <div class="flex items-center justify-between">
+                    <div class="title-desc flex flex-col gap-2">
+                        <h3 class="text-base font-light">Suhu</h3>
+                        <p class="text-3xl font-semibold">38°C</p>
+                    </div>
+
+                    <img src="./assets/svg/Dashboard/Temperature.svg" alt="Temperature Icon" class="w-24">
+                </div>
+            </div>
+    
+            <div class="sm:col-span-6 col-span-12 bg-surface-primaryMediumContainer px-4 py-6 rounded-md">
+                <div class="flex items-center justify-between">
+                    <div class="title-desc flex flex-col gap-2">
+                        <h3 class="text-base font-light">Kelembaban</h3>
+                        <p class="text-3xl font-semibold">45.41%</p>
+                    </div>
+
+                    <img src="./assets/svg/Dashboard/Humidity.svg" alt="Humidity Icon" class="w-24">
+                </div>
+            </div>
+    
+            <div class="sm:col-span-6 col-span-12 bg-surface-primaryHighContainer px-4 py-6 rounded-md">
+                <div class="flex items-center justify-between">
+                    <div class="title-desc flex flex-col gap-2">
+                        <h3 class="text-base font-light">Kualitas Air (kOHMs)</h3>
+                        <p class="text-3xl font-semibold">52.37</p>
+                    </div>
+
+                    <img src="./assets/svg/Dashboard/Air.svg" alt="Air Quality Icon" class="w-24">
+                </div>
+            </div>
+    
+            <div class="sm:col-span-6 col-span-12 bg-surface-secondaryMediumContainer px-4 py-6 rounded-md">
+                <div class="flex items-center justify-between">
+                    <div class="title-desc flex flex-col gap-2">
+                        <h3 class="text-base font-light">Tekanan Udara (hPa)</h3>
+                        <p class="text-3xl font-semibold">1003.63</p>
+                    </div>
+
+                    <img src="./assets/svg/Dashboard/Pressure.svg" alt="Air Pressure Icon" class="w-24">
+                </div>
+            </div>
+        </div>
+    
+        <div class="lg:col-span-4 col-span-12 bg-surface-secondaryLowContainer px-4 py-6 rounded-md">
+            <div class="title-desc flex flex-col gap-6">
+                <h3 class="text-xl font-medium text-left w-full">Tips menjaga kulit tetap sehat</h3>
+                <ul class="custom-list">
+                    <li class="flex items-start">
+                        <div class="flex flex-col gap-2">
+                            <p class="font-medium">Gunakan Tabir Surya Teratur</p>
+                            <p class="font-light">Oleskan tabir surya SPF 30+ setiap hari, ulangi tiap 2 jam jika di luar ruangan.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex flex-col gap-2">
+                            <p class="font-medium">Pastikan tubuh tetap terhidrasi</p>
+                            <p class="font-light">Minum cukup air untuk menjaga kelembapan kulit dan pemulihan dari sinar matahari.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex flex-col gap-2">
+                            <p class="font-medium">Kenakan Pelindung Matahari</p>
+                            <p class="font-light">Pilih pakaian panjang, topi, dan kacamata hitam, terutama saat terik.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex flex-col gap-2">
+                            <p class="font-medium">Hindari Matahari Siang</p>
+                            <p class="font-light">Lakukan aktivitas luar pagi atau sore untuk menghindari sinar intens.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex flex-col gap-2">
+                            <p class="font-medium">Gunakan Pelembap Harian</p>
+                            <p class="font-light">Pilih pelembap sesuai jenis kulit untuk mencegah kekeringan.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="flex flex-col gap-2">
+                            <p class="font-medium">Kurangi Eksfoliasi Saat Terkena Sinar Matahari</p>
+                            <p class="font-light">Eksfoliasi secukupnya untuk mencegah kulit lebih sensitif di bawah sinar.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    function toggleDropdown() {
+        const menu = document.getElementById('dropdown-menu');
+        const isExpanded = menu.classList.toggle('hidden');
+        // Update aria-expanded attribute
+        document.getElementById('menu-button').setAttribute('aria-expanded', !isExpanded);
+    }
+
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function (event) {
+        const menu = document.getElementById('dropdown-menu');
+        const button = document.getElementById('menu-button');
+        if (!menu.contains(event.target) && !button.contains(event.target)) {
+            menu.classList.add('hidden');
+            button.setAttribute('aria-expanded', 'false');
+        }
+    });
+</script>
+
+</html>
